@@ -7,5 +7,6 @@ We have detected exceedingly high usage of your mock/proxy server, you are rate 
 ```
 heroku apps:create apiary-blackhole -o apiary
 heroku config:set GOVERSION=go1.8
+heroku buildpacks:set heroku/go
 ```
 
