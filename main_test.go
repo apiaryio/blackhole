@@ -11,7 +11,7 @@ import (
 func TestConn(t *testing.T) {
 	os.Setenv("PORT", "8888")
 	go SetupServer()
-	res, err := http.Get("http://0.0.0.0:8888")
+	res, err := http.Get("http://localhost:8888")
 	if err != nil {
 		log.Fatal(err)
 	}
