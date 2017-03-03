@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -21,5 +20,5 @@ func TestConn(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("%s", message)
+	log.Println(string(message))
 }
