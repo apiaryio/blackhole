@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"net"
 	"os"
 )
@@ -11,18 +11,21 @@ const (
 )
 
 func SetupServer() {
-	l, err := net.Listen("tcp", ":"+os.Getenv("PORT"))
+	port := os.Getenv("PORT")
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
+
+	l, err := net.Listen("tcp", ":"+port)
 	if err != nil {
-		fmt.Println("Error listening:", err.Error())
-		os.Exit(1)
+		log.Fatal("Error listening:", err.Error())
 	}
 	defer l.Close()
-	fmt.Println("Listening on port:" + os.Getenv("PORT"))
+	log.Println("Listening on port:" + os.Getenv("PORT"))
 	for {
 		conn, err := l.Accept()
 		if err != nil {
-			fmt.Println("Error accepting: ", err.Error())
-			os.Exit(1)
+			log.Fatal("Error accepting: ", err.Error())
 		}
 		conn.Write([]byte(MESSAGE))
 		conn.Close()
