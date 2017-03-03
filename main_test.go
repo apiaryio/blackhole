@@ -15,6 +15,10 @@ func TestConn(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
+	log.Println("Status: " + res.Status)
+	if res.StatusCode != 429 {
+		log.Fatal("Wrong status code, expected 429")
+	}
 	message, err := ioutil.ReadAll(res.Body)
 	res.Body.Close()
 	if err != nil {
